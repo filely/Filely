@@ -1,22 +1,35 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "filely-ssh-sftp-clinet",
+  "version": "0.0.1-alpha",
+  "description": "A clean and modern ssh and sftp client for windows, macos and linux",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/macOS.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . filely --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/windows.ico --prune=true --out=release-builds --version-string.CompanyName=Filely --version-string.FileDescription=Filely --version-string.ProductName=\"Filely Client SSH and SFTP\"",    
+    "package-linux": "electron-packager . filely --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/icons/linux.png --prune=true --out=release-builds"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/AlexanderMandera/Filely",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "ssh",
+    "sftp",
+    "client",
+    "windows",
+    "linux",
+    "modern",
+    "clean"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Alexander Mandera, Robin Schleser & ilou",
+  "license": "GNU GPLv3",
   "devDependencies": {
-    "electron": "^6.0.1"
+    "electron": "^6.0.1",
+    "electron-packager": "^14.0.4",
+    "ssh2": "^0.8.5"
+  },
+  "dependencies": {
+    "ssh2": "^0.8.5",
+    "electron": "^6.0.1",
+    "electron-packager": "^14.0.4"
   }
 }

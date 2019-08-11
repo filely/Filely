@@ -9,8 +9,9 @@ let mainWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 800,
+    width: 1000,
     height: 600,
+    icon: __dirname + '/assets/icons/favicon.ico',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
