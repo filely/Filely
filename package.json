@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/macOS.icns --prune=true --out=release-builds",
-    "package-win": "electron-packager . filely --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/windows.ico --prune=true --out=release-builds --version-string.CompanyName=Filely --version-string.FileDescription=Filely --version-string.ProductName=\"Filely Client SSH and SFTP\"",    
+    "package-win": "electron-packager . filely --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/windows.ico --prune=true --out=release-builds --version-string.CompanyName=Filely --version-string.FileDescription=Filely --version-string.ProductName=\"Filely Client SSH and SFTP\"",
     "package-linux": "electron-packager . filely --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/icons/linux.png --prune=true --out=release-builds"
   },
   "repository": "https://github.com/AlexanderMandera/Filely",
