@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="215.625" height="200" viewBox="0 0 215.625 200">
+  <g id="connect_to_server" transform="translate(-360 -430)">
+    <g id="Gruppe_12" data-name="Gruppe 12" transform="translate(360 430)">
+      <g id="Gruppe_8" data-name="Gruppe 8" transform="translate(115.625 110.625)">
+        <g id="Pfad_2" data-name="Pfad 2" transform="translate(0 0)" fill="#3498db" stroke-linecap="square">
+          <path d="M 87.5 67.5 L 12.5 67.5 C 9.743000030517578 67.5 7.5 65.25699615478516 7.5 62.49999618530273 L 7.5 12.49999618530273 C 7.5 9.742996215820313 9.743000030517578 7.499996185302734 12.5 7.499996185302734 L 87.5 7.499996185302734 C 90.25700378417969 7.499996185302734 92.5 9.742996215820313 92.5 12.49999618530273 L 92.5 62.49999618530273 C 92.5 65.25699615478516 90.25700378417969 67.5 87.5 67.5 Z" stroke="none"/>
+          <path d="M 15 14.99999618530273 L 15 59.99999618530273 L 85 59.99999618530273 L 85 14.99999618530273 L 15 14.99999618530273 M 12.5 -7.62939453125e-06 L 87.5 -7.62939453125e-06 C 94.40355682373047 -7.62939453125e-06 100 5.596443176269531 100 12.49999618530273 L 100 62.49999618530273 C 100 69.40354919433594 94.40355682373047 75 87.5 75 L 12.5 75 C 5.596443176269531 75 0 69.40354919433594 0 62.49999618530273 L 0 12.49999618530273 C 0 5.596443176269531 5.596443176269531 -7.62939453125e-06 12.5 -7.62939453125e-06 Z" stroke="none" fill="#2980b9"/>
+        </g>
+        <path id="Pfad_1" data-name="Pfad 1" d="M4.687,0h37.5a4.687,4.687,0,1,1,0,9.375H4.687A4.687,4.687,0,0,1,4.687,0Z" transform="translate(26.875 80)" fill="#2980b9"/>
+        <rect id="Rechteck_20" data-name="Rechteck 20" width="28.125" height="23.75" transform="translate(36.25 65.625)" fill="#2980b9"/>
+      </g>
+      <g id="Gruppe_9" data-name="Gruppe 9" transform="translate(0 0)">
+        <g id="Pfad_4" data-name="Pfad 4" transform="translate(0 0)" fill="#2980b9" stroke-linecap="square">
+          <path d="M 56.24999618530273 81.875 L 12.49999618530273 81.875 C 9.742996215820313 81.875 7.499996185302734 79.63199615478516 7.499996185302734 76.875 L 7.499996185302734 12.49999618530273 C 7.499996185302734 9.742996215820313 9.742996215820313 7.499996185302734 12.49999618530273 7.499996185302734 L 56.24999618530273 7.499996185302734 C 59.00699615478516 7.499996185302734 61.24999618530273 9.742996215820313 61.24999618530273 12.49999618530273 L 61.24999618530273 76.875 C 61.24999618530273 79.63199615478516 59.00699615478516 81.875 56.24999618530273 81.875 Z" stroke="none"/>
+          <path d="M 14.99999618530273 14.99999237060547 L 14.99999618530273 74.375 L 53.74999618530273 74.375 L 53.74999618530273 14.99999237060547 L 14.99999618530273 14.99999237060547 M 12.49999618530273 -7.62939453125e-06 L 56.24999618530273 -7.62939453125e-06 C 63.15354919433594 -7.62939453125e-06 68.75 5.596443176269531 68.75 12.49999237060547 L 68.75 76.875 C 68.75 83.77854919433594 63.15354919433594 89.375 56.24999618530273 89.375 L 12.49999618530273 89.375 C 5.596443176269531 89.375 -7.62939453125e-06 83.77854919433594 -7.62939453125e-06 76.875 L -7.62939453125e-06 12.49999237060547 C -7.62939453125e-06 5.596443176269531 5.596443176269531 -7.62939453125e-06 12.49999618530273 -7.62939453125e-06 Z" stroke="none" fill="#2980b9"/>
+        </g>
+        <path id="Pfad_3" data-name="Pfad 3" d="M3.125,0h43.75A3.125,3.125,0,0,1,50,3.125V67.5a3.125,3.125,0,0,1-3.125,3.125H3.125A3.125,3.125,0,0,1,0,67.5V3.125A3.125,3.125,0,0,1,3.125,0Z" transform="translate(9.375 9.375)" fill="#d2e7f6"/>
+        <path id="Pfad_9" data-name="Pfad 9" d="M4.687,0h26.25a4.687,4.687,0,0,1,0,9.375H4.687A4.687,4.687,0,0,1,4.687,0Z" transform="translate(16.875 16.875)" fill="#2980b9"/>
+        <path id="Pfad_8" data-name="Pfad 8" d="M4.687,0h26.25a4.687,4.687,0,0,1,0,9.375H4.687A4.687,4.687,0,0,1,4.687,0Z" transform="translate(16.875 32.5)" fill="#2980b9"/>
+        <path id="Pfad_7" data-name="Pfad 7" d="M4.687,0h8.75a4.687,4.687,0,0,1,0,9.375H4.687A4.687,4.687,0,0,1,4.687,0Z" transform="translate(16.875 48.125)" fill="#2980b9"/>
+        <path id="Pfad_6" data-name="Pfad 6" d="M4.687,0A4.687,4.687,0,1,1,0,4.687,4.687,4.687,0,0,1,4.687,0Z" transform="translate(43.125 48.125)" fill="#2980b9"/>
+        <path id="Pfad_5" data-name="Pfad 5" d="M4.687,0h26.25a4.687,4.687,0,0,1,0,9.375H4.687A4.687,4.687,0,0,1,4.687,0Z" transform="translate(16.875 63.75)" fill="#2980b9"/>
+      </g>
+      <g id="Gruppe_10" data-name="Gruppe 10" transform="translate(30 105.625)">
+        <rect id="Rechteck_27" data-name="Rechteck 27" width="70.75" height="9.375" rx="4.687" transform="translate(0 45)" fill="#2c3e50"/>
+        <rect id="Rechteck_28" data-name="Rechteck 28" width="54.375" height="9.375" rx="4.687" transform="translate(9.375) rotate(90)" fill="#2c3e50"/>
+        <rect id="Rechteck_29" data-name="Rechteck 29" width="25" height="9.375" rx="4.687" transform="translate(55.39 32.074) rotate(45)" fill="#2c3e50"/>
+        <rect id="Rechteck_30" data-name="Rechteck 30" width="25" height="9.375" rx="4.687" transform="translate(48.761 61.001) rotate(-45)" fill="#2c3e50"/>
+      </g>
+      <g id="Gruppe_16" data-name="Gruppe 16" transform="translate(171.068 95.256) rotate(180)">
+        <rect id="Rechteck_27-2" data-name="Rechteck 27" width="70.75" height="9.375" rx="4.687" transform="translate(0 45)" fill="#2c3e50"/>
+        <rect id="Rechteck_28-2" data-name="Rechteck 28" width="54.375" height="9.375" rx="4.687" transform="translate(9.375) rotate(90)" fill="#2c3e50"/>
+        <rect id="Rechteck_29-2" data-name="Rechteck 29" width="25" height="9.375" rx="4.687" transform="translate(55.39 32.074) rotate(45)" fill="#2c3e50"/>
+        <rect id="Rechteck_30-2" data-name="Rechteck 30" width="25" height="9.375" rx="4.687" transform="translate(48.761 61.001) rotate(-45)" fill="#2c3e50"/>
+      </g>
+    </g>
+    <rect id="Rechteck_31" data-name="Rechteck 31" width="81.875" height="57.5" rx="5" transform="translate(484.375 549.375)" fill="#d2e7f6"/>
+  </g>
+</svg>
