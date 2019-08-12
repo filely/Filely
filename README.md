@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <img src="https://filely.app/img/filely_banner.png">
 </p>
@@ -8,6 +6,7 @@
   <a href=""><img src="https://img.shields.io/badge/License-Filely--License-Green.svg"/></a>
   <a href=""><img src="https://img.shields.io/badge/Version-1.0-blue.svg"/></a>
 </p>
+
 ---
 
 ### What is Filely?
