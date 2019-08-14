@@ -1,9 +1,9 @@
 var Client = require('ssh2').Client;
 
-module.exports = class SSHClient {
+module.exports = class ServerConnection {
 
     /**
-     * The constructor of the SSHClient class
+     * The constructor of the ServerConnection class
      * It will save all parameters into class attributes
      * 
      * @param  {String} ipAddress the host of the remote system
@@ -27,7 +27,7 @@ module.exports = class SSHClient {
 
         //Listens for any kind of data (data and error)
         this.client.on('data', (data) => console.log('OUTPUT: ' + data));
-        this.client.on('error', () => console.log('SSH - Connection Error: ' + err));
+        this.client.on('error', (err) => console.log('SSH - Connection Error: ' + err));
 
         //Listens for the end and the start of an connection
         this.client.on('end', () => console.log('SSH - Connection Closed'));
@@ -50,22 +50,41 @@ module.exports = class SSHClient {
      * Executes a command on the remote system. the result will be returned in form of a object
      * 
      * @param {String} commands The command that will be executed on the remote system
-     * @returns {Object} a Object that contains the following keys {error, result, code, signal}
+     * @param {function(data)} dataCallback the callback will be executed when the client recives the informations from the remote system
+     * @param {function(stderr} errorCallback the callback will be executed when a error is happening
+     * @param {function(code, signal)} closeCallback the callback will be executed when the current operation has finished
      */
-    execute(commands) {
-        let result = "";
-        let resultCode = 0;
-        let resultSignal = null;
-        let error  = "";
-        await this.client.exec('uptime', function(err, stream) {
-            if (err) throw err;
-            stream.on('close', (code, signal) => {resultCode = code; resultSignal = signal})
-            .on('data', (data) => result = data)
-            .stderr.on('data', (data) => error = data);
+    execute(commands, dataCallback, errorCallback, closeCallback) {
+        //Handels the possibility if someone just wants to execute something with ignoring the result
+        dataCallback  = dataCallback  || function(error) {};
+        errorCallback = errorCallback || function(error) {};
+        closeCallback = closeCallback || function(code, signal) {};
+
+        //Executes the command on the remote system and calls the callbacks when something happesn
+        this.client.exec(commands, function(err, stream) {
+            if (err) errorCallback(err);
+            stream.on('close', (code, signal) => closeCallback(code, signal))
+            .on('data', (data) => dataCallback(String(data)))
+            .stderr.on('data', (stderr) => errorCallback(stderr));
         });
-        return {error: error, result: result, code: resultCode, signal: signal};
     }
 
+    /**
+     * 
+     * Recieves the directory listing of the remote system
+     * 
+     * @param {String} path The path from where the directory listing should be recieved
+     * @param {function(list)} resultCallback If the listing was succsesfully created this callback will be executed
+     * @param {function} errorCallback if something wrong happens this will be executed
+     */
+    listFileSystem(path, resultCallback, errorCallback) {
+        //Opens a new SFTP Session
+        this.client.sftp(function(err, sftp) {
+            if (err) errorCallback(err);
+            //Reads the directory from the path specified as a parameter
+            sftp.readdir(path, (err, list) => { resultCallback(list); if(err) errorCallback(err)} );
+        });
+    }
 
     /**
      * Closes the ssh connection
