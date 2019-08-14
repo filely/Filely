@@ -75,7 +75,7 @@ module.exports = class ServerConnection {
      * 
      * @param {String} path The path from where the directory listing should be recieved
      * @param {function(list)} resultCallback If the listing was succsesfully created this callback will be executed
-     * @param {function} errorCallback if something wrong happens this will be executed
+     * @param {function(error)} errorCallback if something wrong happens this will be executed
      */
     listFileSystem(path, resultCallback, errorCallback) {
         //Opens a new SFTP Session
@@ -83,6 +83,29 @@ module.exports = class ServerConnection {
             if (err) errorCallback(err);
             //Reads the directory from the path specified as a parameter
             sftp.readdir(path, (err, list) => { resultCallback(list); if(err) errorCallback(err)} );
+        });
+    }
+
+    
+    /**
+     * 
+     * Loads a File from a remote system to your local system!
+     * 
+     * @param {String} remotePath The path to the File on the remote server.
+     * @param {String} localPath The path where the file should be saved.
+     * @param {function(localPath)} downloadSuccessCallback when the server has send all data to the client it can be saved there!
+     * @param {function(error)} errorCallback if something wrong happens this will be executed
+     */
+    downloadFile(remotePath, localPath, downloadSuccessCallback, errorCallback) {
+        //Opens a new SFTP Session
+        this.client.sftp(function(err, sftp) {
+            if (err) errorCallback(err);
+            //Gets the data from the remote system and writes it to the local system
+            sftp.fastGet(remotePath, localPath, (err) => {
+                if (err) errorCallback(err);
+                //calls the callback if everything goes right!
+                downloadSuccessCallback(localPath);
+              });
         });
     }
 
