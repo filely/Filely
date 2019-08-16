@@ -1,5 +1,5 @@
 {
-  "name": "filely-ssh-sftp-clinet",
+  "name": "filely-ssh-sftp-client",
   "version": "0.0.1-alpha",
   "description": "A clean and modern ssh and sftp client for windows, macos and linux",
   "main": "main.js",
@@ -21,15 +21,17 @@
     "clean"
   ],
   "author": "Alexander Mandera, Robin Schleser & ilou",
-  "license": "GNU GPLv3",
+  "license": "LICENSE.md",
   "devDependencies": {
     "electron": "^6.0.1",
     "electron-packager": "^14.0.4",
-    "ssh2": "^0.8.5"
+    "ssh2": "^0.8.5",
+    "tsc": "^1.20150623.0"
   },
   "dependencies": {
-    "ssh2": "^0.8.5",
     "electron": "^6.0.1",
-    "electron-packager": "^14.0.4"
+    "electron-packager": "^14.0.4",
+    "express": "^4.17.1",
+    "ssh2": "^0.8.5"
   }
 }
