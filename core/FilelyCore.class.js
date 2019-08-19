@@ -19,7 +19,7 @@ class FilelyCore {
 
         log.info("Starting Filely App");
 
-        this.app = new ElectronApp(); // TODO: Set argument to false to use in production
+        this.app = new ElectronApp(false); // TODO: Set argument to false to use in production
 
         this.ipc = new IPC(this.app);
         await this.ipc.loadHandlers();

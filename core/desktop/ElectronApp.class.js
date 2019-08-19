@@ -18,6 +18,8 @@ class ElectronApp {
         this.mainWindow = new BrowserWindow({
             width: 1280,
             height: 720,
+            minHeight: 680,
+            minWidth: 1170,
             webPreferences: { nodeIntegration: true },
             icon: 'assets/icons/windows.ico'
         });
