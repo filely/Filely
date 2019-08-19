@@ -1,4 +1,5 @@
 var Client = require('ssh2').Client;
+var fs = require("fs");
 
 module.exports = class ServerConnection {
 
@@ -106,6 +107,42 @@ module.exports = class ServerConnection {
                 //calls the callback if everything goes right!
                 downloadSuccessCallback(localPath);
               });
+        });
+    }
+
+    /**
+     * 
+     * Loads a File from the local system to the remote system!
+     * 
+     * @param {String} localPath The path to the File on the remote server.
+     * @param {String} remotePath The path where the file should be saved.
+     * @param {function(remotePath)} uploadSuccessCallback when the server has recived all data the data the client has sended!
+     * @param {function(remotePath)} closeCallback the stream was closed and the operation has ended
+     * @param {function(error)} errorCallback if something wrong happens this will be executed
+     */
+    uploadFile(localPath, remotePath, downloadSuccessCallback, closeCallback, errorCallback) {
+        //Opens a new SFTP Session
+        this.client.sftp(function(err, sftp) {
+            if (err) errorCallback(err);
+
+            // reads the file data
+            var readStream = fs.createReadStream(localPath);
+
+            //writes the data from the local fiel to the remote system
+            var writeStream = sftp.createWriteStream(remotePath);
+    
+            writeStream.on('close',function () {
+                downloadSuccessCallback(remotePath);
+            });
+            
+            //The operation has ended and a new one can start!
+            writeStream.on('end', function () {
+                closeCallback(remotePath);
+            });
+    
+            // moves the data from the local file stream to the remote file write stream!
+            readStream.pipe( writeStream );
+
         });
     }
 
