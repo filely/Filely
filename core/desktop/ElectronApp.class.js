@@ -15,7 +15,12 @@ class ElectronApp {
     }
 
     _createWindow() {
-        this.mainWindow = new BrowserWindow({width: 1280, height: 720, webPreferences: {nodeIntegration: true}});
+        this.mainWindow = new BrowserWindow({
+            width: 1280,
+            height: 720,
+            webPreferences: { nodeIntegration: true },
+            icon: 'assets/icons/windows.ico'
+        });
         this.mainWindow.setMenu(null);
 
         if (this.development === true) {
