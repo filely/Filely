@@ -1,9 +1,9 @@
 "use strict";
 
-const {app, BrowserWindow, ipcMain} = require('electron');
-const Log = require('../Log.class');
-const path = require('path');
-const net = require('net');
+const {app, BrowserWindow, ipcMain} = require("electron");
+const Log = require("../Log.class");
+const path = require("path");
+const net = require("net");
 
 /**
  * Class wrapping the electron BrowserWindow
@@ -21,7 +21,7 @@ class ElectronApp {
             width: 1280,
             height: 720,
             webPreferences: { nodeIntegration: true },
-            icon: 'assets/icons/windows.ico'
+            icon: "assets/icons/windows.ico"
         });
         this.mainWindow.setMenu(null);
 
@@ -32,15 +32,15 @@ class ElectronApp {
 
             let server = net.createServer();
 
-            server.once('error', (err) => {
-                if (err.code === 'EADDRINUSE') {
+            server.once("error", (err) => {
+                if (err.code === "EADDRINUSE") {
                     Log.debug("Using local Angular development server");
                     this.mainWindow.loadURL("http://localhost:4200");
                 }
                 server.close();
             });
 
-            server.once('listening', () => {
+            server.once("listening", () => {
                 Log.debug("Using built files");
                 this.mainWindow.loadFile(path.resolve(__dirname + "/../../public/dist/public/index.html"));
                 server.close();
@@ -52,7 +52,7 @@ class ElectronApp {
             this.mainWindow.loadFile("public/dist/public/index.html");
         }
 
-        this.mainWindow.on('closed', () => {
+        this.mainWindow.on("closed", () => {
             this.mainWindow = null;
         });
     }
@@ -69,9 +69,9 @@ class ElectronApp {
      * Runs the electron app and opens the window.
      */
     run() {
-        app.on('ready', this._createWindow.bind(this));
-        app.on('window-all-closed', () => {
-            if (process.platform !== 'darwin') {
+        app.on("ready", this._createWindow.bind(this));
+        app.on("window-all-closed", () => {
+            if (process.platform !== "darwin") {
                 app.quit();
             }
         });
