@@ -9,27 +9,24 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
+    
     - name: Use Node.js 10
       uses: actions/setup-node@v1
       with:
         version: 10
         
     - name: Install dependencies
-      needs: ["Use Node.js 10"]
       run: |
         npm install
         
     - name: Package for Windows
-      needs: ["Install dependencies"]
       run: |
         npm run package-win
       
     - name: Package for Linux
-      needs: ["Install dependencies"]
       run: |
         npm run package-linux
         
     - name: Package for Windows
-      needs: ["Install dependencies"]
       run: |
         npm run package-mac
