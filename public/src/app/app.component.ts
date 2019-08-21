@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { ipcRenderer } from 'electron';
-import { IpcService } from './ipc.service';
+import {Component} from '@angular/core';
+import {IpcService} from './ipc.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,27 @@ import { IpcService } from './ipc.service';
 export class AppComponent {
   title = 'public';
 
-  constructor(private ipc: IpcService) {
-    ipc.send("test", "test");
+  restore = false;
+
+  constructor(private ipc: IpcService, private router: Router) {
+
   }
+
+  getRoute() {
+    if (this.router.url === '/home') {
+      return 'home';
+    }
+  }
+
+  sendWindowAction(action) {
+    this.ipc.send('window-action', action);
+
+    if(action === "restore") {
+      this.restore = false;
+    } else if(action === "maximize") {
+      this.restore = true;
+    }
+  }
+
 
 }
