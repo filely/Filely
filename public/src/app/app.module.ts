@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { IpcService } from './ipc.service';
 import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
+import { ConnectComponent } from './connect/connect.component';
+import { ServerListComponent } from './server-list/server-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    SettingsComponent
+    SettingsComponent,
+    ConnectComponent,
+    ServerListComponent
   ],
   imports: [
     BrowserModule,
