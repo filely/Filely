@@ -31,6 +31,10 @@ class FilelyCore {
         log.info("Successfully loaded in " + time + " s");
     }
 
+    getElectronApp() {
+        return this.app;
+    }
+
 }
 
 let core = new FilelyCore();

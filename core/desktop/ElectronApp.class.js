@@ -21,6 +21,7 @@ class ElectronApp {
             width: 1280,
             height: 720,
             webPreferences: { nodeIntegration: true },
+            frame: false,
             icon: "assets/icons/windows.ico"
         });
         this.mainWindow.setMenu(null);
@@ -46,9 +47,8 @@ class ElectronApp {
                 server.close();
             });
 
-            server.listen(4200);
+            server.listen(4200, "localhost");
         } else {
-            console.log(path.resolve(__dirname + "/../../public/dist/public/index.html"));
             this.mainWindow.loadFile("public/dist/public/index.html");
         }
 
@@ -63,6 +63,14 @@ class ElectronApp {
      */
     getIPC() {
         return ipcMain;
+    }
+
+    /**
+     * Returns the browser window
+     * @returns {Electron.BrowserWindow}
+     */
+    getWindow() {
+        return this.mainWindow;
     }
 
     /**
