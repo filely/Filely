@@ -61,7 +61,7 @@ That are the features that make our software special:
 ### Usage Permission
 
 To start using Filely, it is necessary to purchase a license for 6.99€ once.
-Every other usage with a licensed account counts as a piracy copy.
+Every other usage without a licensed account counts as a piracy copy.
 As soon as you contribute to Filely, you have the opportunity to get a free copy of Filely to develop and test new features. You can get more information in the [Filely license (LICENSE.md)](https://github.com/AlexanderMandera/Filely/blob/master/LICENSE.md).
 
 ### Beta Phase
