@@ -1,5 +1,6 @@
 const Client = require('ssh2').Client;
 const fs = require("fs");
+const Log = require('../Log.class');
 
 class ServerConnection {
 
@@ -28,16 +29,15 @@ class ServerConnection {
         this.client = new Client();
 
         //Listens for any kind of data (data and error)
-        this.client.on('data', (data) => console.log('OUTPUT: ' + data));
-        this.client.on('error', (err) => console.log('SSH - Connection Error: ' + err));
+        this.client.on('error', (err) => Log.error('SSH - Connection Error: ' + err));
 
         //Listens for the end and the start of an connection
-        this.client.on('end', () => console.log('SSH - Connection Closed'));
-        this.client.on('ready', () => readyCallback());
+        this.client.on('end', () => Log.info('SSH - Connection Closed'));
+        this.client.on('ready', readyCallback);
 
         //If the ssh server requerst you to interact with the keyboard to enter the passwird it will do this here!
         this.client.on('keyboard-interactive', (name, instructions, instructionsLang, prompts, finish) => {
-            console.log('Connection :: keyboard-interactive');
+            Log.debug('Connection :: keyboard-interactive');
             finish([ssh.credentialsPassword()]);
         });
 

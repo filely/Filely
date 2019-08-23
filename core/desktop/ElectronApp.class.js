@@ -57,6 +57,11 @@ class ElectronApp {
                 app.quit();
             }
         });
+        app.setAsDefaultProtocolClient("ssh");
+        app.setAsDefaultProtocolClient("sftp");
+        app.setAsDefaultProtocolClient("ftp");
+        app.setAsDefaultProtocolClient("rdp");
+        app.setAsDefaultProtocolClient("vnc");
         if (this.mainWindow === null) {
             this._createWindow();
         }
