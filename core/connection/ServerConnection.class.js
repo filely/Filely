@@ -1,6 +1,8 @@
-var Client = require('ssh2').Client;
+const Client = require('ssh2').Client;
+const fs = require("fs");
+const Log = require('../Log.class');
 
-module.exports = class ServerConnection {
+class ServerConnection {
 
     /**
      * The constructor of the ServerConnection class
@@ -20,22 +22,22 @@ module.exports = class ServerConnection {
 
     /**
      * Establishs the Connection to the remote system
+     * @param  {function} readyCallback we be called when the connection is ready operations
      */
-    connect() {
+    connect(readyCallback) {
         //Creates an new ssh2 client
         this.client = new Client();
 
         //Listens for any kind of data (data and error)
-        this.client.on('data', (data) => console.log('OUTPUT: ' + data));
-        this.client.on('error', (err) => console.log('SSH - Connection Error: ' + err));
+        this.client.on('error', (err) => Log.error('SSH - Connection Error: ' + err));
 
         //Listens for the end and the start of an connection
-        this.client.on('end', () => console.log('SSH - Connection Closed'));
-        this.client.on('ready', () => console.log('SSH - Client ready'));
+        this.client.on('end', () => Log.info('SSH - Connection Closed'));
+        this.client.on('ready', readyCallback);
 
         //If the ssh server requerst you to interact with the keyboard to enter the passwird it will do this here!
         this.client.on('keyboard-interactive', (name, instructions, instructionsLang, prompts, finish) => {
-            console.log('Connection :: keyboard-interactive');
+            Log.debug('Connection :: keyboard-interactive');
             finish([ssh.credentialsPassword()]);
         });
 
@@ -110,6 +112,42 @@ module.exports = class ServerConnection {
     }
 
     /**
+     * 
+     * Loads a File from the local system to the remote system!
+     * 
+     * @param {String} localPath The path to the File on the remote server.
+     * @param {String} remotePath The path where the file should be saved.
+     * @param {function(remotePath)} uploadSuccessCallback when the server has recived all data the data the client has sended!
+     * @param {function(remotePath)} closeCallback the stream was closed and the operation has ended
+     * @param {function(error)} errorCallback if something wrong happens this will be executed
+     */
+    uploadFile(localPath, remotePath, uploadSuccessCallback, closeCallback, errorCallback) {
+        //Opens a new SFTP Session
+        this.client.sftp(function(err, sftp) {
+            if (err) errorCallback(err);
+
+            // reads the file data
+            var readStream = fs.createReadStream(localPath);
+
+            //writes the data from the local fiel to the remote system
+            var writeStream = sftp.createWriteStream(remotePath);
+    
+            writeStream.on('close',function () {
+                uploadSuccessCallback(remotePath);
+            });
+            
+            //The operation has ended and a new one can start!
+            writeStream.on('end', function () {
+                closeCallback(remotePath);
+            });
+    
+            // moves the data from the local file stream to the remote file write stream!
+            readStream.pipe( writeStream );
+
+        });
+    }
+
+    /**
      * Closes the ssh connection
      */
     close() {
@@ -145,3 +183,6 @@ module.exports = class ServerConnection {
     }
 
   };
+
+
+  module.exports = ServerConnection;

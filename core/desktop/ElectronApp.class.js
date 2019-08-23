@@ -20,6 +20,8 @@ class ElectronApp {
         this.mainWindow = new BrowserWindow({
             width: 1280,
             height: 720,
+            minHeight: 680,
+            minWidth: 1170,
             webPreferences: { nodeIntegration: true },
             frame: false,
             icon: "assets/icons/windows.ico"
@@ -83,6 +85,11 @@ class ElectronApp {
                 app.quit();
             }
         });
+        app.setAsDefaultProtocolClient("ssh");
+        app.setAsDefaultProtocolClient("sftp");
+        app.setAsDefaultProtocolClient("ftp");
+        app.setAsDefaultProtocolClient("rdp");
+        app.setAsDefaultProtocolClient("vnc");
         if (this.mainWindow === null) {
             this._createWindow();
         }
