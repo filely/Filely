@@ -1,8 +1,6 @@
 "use strict";
 
-const {app, BrowserWindow, ipcMain} = require('electron');
 const drpc = require('discord-rpc');
-const Log = require('../Log.class');
 
 /**
  * Class for handeling the Discord Rich Precence update scheduling

@@ -1,7 +1,7 @@
-var Client = require('ssh2').Client;
-var fs = require("fs");
+const Client = require('ssh2').Client;
+const fs = require("fs");
 
-module.exports = class ServerConnection {
+class ServerConnection {
 
     /**
      * The constructor of the ServerConnection class
@@ -21,8 +21,9 @@ module.exports = class ServerConnection {
 
     /**
      * Establishs the Connection to the remote system
+     * @param  {function} readyCallback we be called when the connection is ready operations
      */
-    connect() {
+    connect(readyCallback) {
         //Creates an new ssh2 client
         this.client = new Client();
 
@@ -32,7 +33,7 @@ module.exports = class ServerConnection {
 
         //Listens for the end and the start of an connection
         this.client.on('end', () => console.log('SSH - Connection Closed'));
-        this.client.on('ready', () => console.log('SSH - Client ready'));
+        this.client.on('ready', () => readyCallback());
 
         //If the ssh server requerst you to interact with the keyboard to enter the passwird it will do this here!
         this.client.on('keyboard-interactive', (name, instructions, instructionsLang, prompts, finish) => {
@@ -120,7 +121,7 @@ module.exports = class ServerConnection {
      * @param {function(remotePath)} closeCallback the stream was closed and the operation has ended
      * @param {function(error)} errorCallback if something wrong happens this will be executed
      */
-    uploadFile(localPath, remotePath, downloadSuccessCallback, closeCallback, errorCallback) {
+    uploadFile(localPath, remotePath, uploadSuccessCallback, closeCallback, errorCallback) {
         //Opens a new SFTP Session
         this.client.sftp(function(err, sftp) {
             if (err) errorCallback(err);
@@ -132,7 +133,7 @@ module.exports = class ServerConnection {
             var writeStream = sftp.createWriteStream(remotePath);
     
             writeStream.on('close',function () {
-                downloadSuccessCallback(remotePath);
+                uploadSuccessCallback(remotePath);
             });
             
             //The operation has ended and a new one can start!
@@ -182,3 +183,6 @@ module.exports = class ServerConnection {
     }
 
   };
+
+
+  module.exports = ServerConnection;
