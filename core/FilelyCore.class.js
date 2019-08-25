@@ -3,7 +3,8 @@
 const IPC = require('./io/IPC.class');
 const ElectronApp = require('./desktop/ElectronApp.class');
 const DiscordRPC = require('./desktop/DiscordRPC.class');
-const Connection = require('./connection/ServerConnection.class');
+const SshConnection = require('./connections/SshServerConnection.class');
+const GraficalConnection = require('./connections/GraficalServerConnection.class');
 const log = require('./Log.class');
 
 /**
