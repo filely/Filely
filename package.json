@@ -33,8 +33,11 @@
     "discord-rpc": "^3.0.2",
     "discord.js": "^11.5.1",
     "electron": "^6.0.1",
+    "electron-localshortcut": "^3.1.0",
     "electron-packager": "^14.0.4",
     "express": "^4.17.1",
+    "node-png": "^0.4.3",
+    "rfb2": "^0.2.0",
     "ssh2": "^0.8.5"
   }
 }
