@@ -2,6 +2,8 @@
 
 const IPC = require('./io/IPC.class');
 const ElectronApp = require('./desktop/ElectronApp.class');
+const DiscordRPC = require('./desktop/DiscordRPC.class');
+const Connection = require('./connection/ServerConnection.class');
 const log = require('./Log.class');
 
 /**
@@ -23,6 +25,9 @@ class FilelyCore {
         this.ipc = new IPC(this.app);
         await this.ipc.loadHandlers();
         this.ipc.initHandlers();
+
+        this.drpc = new DiscordRPC();
+        this.drpc.run();
 
         this.app.run();
 
