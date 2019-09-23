@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ConnectComponent } from './connect/connect.component';
 import { ServerListComponent } from './server-list/server-list.component';
+import { ConsoleComponent } from './console/console.component';
+import { FileTransferComponent } from './file-transfer/file-transfer.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { ServerListComponent } from './server-list/server-list.component';
     HomeComponent,
     SettingsComponent,
     ConnectComponent,
-    ServerListComponent
+    ServerListComponent,
+    ConsoleComponent,
+    FileTransferComponent
   ],
   imports: [
     BrowserModule,

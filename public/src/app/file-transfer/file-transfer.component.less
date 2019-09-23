@@ -1,0 +1,134 @@
+.split {
+    display: flex;
+    width: 100%;
+}
+
+.file-box {
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,.16);
+    border-radius: 5px;
+
+    background: #ffffff;
+    
+    &:first-child {
+        margin-right: 10px;
+    }
+
+    &:last-child {
+        margin-left: 10px;
+    }
+
+    .header {
+        background: #fafbfc;
+
+        &.accent {
+            background: #2980B9;
+            .name {
+                color: white;
+            }
+        }
+
+        border-radius: 5px 5px 0 0;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 60px;
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        font-family: "Nunito", sans-serif;
+
+        .name {
+            font-weight: bold;
+            color: #2C3E50;
+            font-size: 24px;
+            margin-right: 40px;
+        }
+
+        .filepath {
+            height: 35px;
+            border-radius: 17.5px;
+            flex-grow: 1;
+
+            font-family: "Nunito", sans-serif;
+            font-weight: 600;
+            border: 1px solid rgba(44,62,80,.1);
+            background: #ffffff;
+            color: #2C3E50;
+            padding-left: 20px;
+            padding-right: 20px;
+            font-size: 14px;
+            outline: none;
+        }
+    }
+
+    .files {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 20px;
+        table {
+            font-family: "Nunito", sans-serif;
+            width: 100%;
+            border: 0;
+            border-spacing: 2px;
+            
+            thead {
+                text-align: left;
+                border-collapse: collapse;
+                font-weight: normal;
+                border-spacing: 0;
+            }
+
+            th {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+            
+            .divider {
+                height: 1px;
+                display: table-row;
+                border-collapse: separate;
+                width: 100%;
+                background: #000000;
+            }
+
+            tbody {
+                border-collapse: separate;
+                
+                tr {
+                    &:first-child {
+                        padding-top: 15px;
+                    }
+                    height: 25px;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+
+                    .actions {
+                        i {
+                            margin-right: 10px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
+}
+
+.icon-folder {
+    color: #FFE793;
+}
+
+.icon-edit {
+    color: #3498DB;
+}
+ 
+.icon-remove {
+    color: #E81123;
+}
+
+.icon-file {
+    color: #2C3E50;
+}
