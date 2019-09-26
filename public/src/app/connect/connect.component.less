@@ -1,0 +1,125 @@
+.protocols {
+  display: flex;
+  margin-top: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .protocol {
+    height: 120px;
+    width: 120px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
+
+    img {
+      position: absolute;
+      height: 40%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.connect {
+  margin: 32px auto;
+  padding: 20px;
+  width: 720px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+
+  .input:not(:first-child) {
+    margin-top: 10px;
+  }
+}
+
+.input {
+  height: 63px;
+  border: 2px solid rgba(44, 62, 80, .07);
+  border-radius: 10px;
+  display: flex;
+
+  label {
+    display: block;
+    width: 220px;
+    height: 100%;
+    border-right: 2px solid rgba(44, 62, 80, .07);
+    border-radius: 10px 0 0 10px;
+    background: #fafbfc;
+
+    text-align: center;
+    line-height: 63px;
+    color: #2C3E50;
+
+    font-family: Nunito, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  input {
+    display: inline-block;
+    height: 100%;
+    flex-grow: 1;
+    border-radius: 0 10px 10px 0;
+    border: 0;
+    background: #ffffff;
+    font-family: Nunito, sans-serif;
+    font-size: 24px;
+    outline-color: #2980B9;
+    padding-left: 32px;
+    padding-right: 32px;
+    font-weight: bold;
+    color: #2C3E50;
+  }
+}
+
+.tab-box {
+  border: 2px solid #f0f1f2;
+  border-radius: 10px;
+  margin-top: 10px;
+  .tabs {
+    display: flex;
+    .tab {
+      width: 25%;
+      height: 65px;
+      background: #ffffff;
+      line-height: 65px;
+      text-align: center;
+      font-family: Nunito, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #2C3E50;
+      cursor: pointer;
+      border-left: 2px solid #f0f1f2;
+      border-bottom: 2px solid #f0f1f2;
+      &:first-child {
+        width: 240px;
+        background: #fafbfc;
+        border-radius: 10px 0 0 0;
+        border-left: none;
+        cursor: default;
+      }
+      &:last-child {
+        border-radius: 0 10px 0 0;
+      }
+      &.active {
+        background: #3498DB;
+        color: #ffffff;
+        &:hover {
+          background: darken(#3498DB, 10%);
+        }
+      }
+      &:hover {
+        background: #fafbfc;
+      }
+    }
+  }
+  .content {
+    display: block;
+    padding: 20px;
+  }
+}
