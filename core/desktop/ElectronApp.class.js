@@ -20,7 +20,7 @@ class ElectronApp {
     _createWindow() {
         this.mainWindow = new BrowserWindow({
             width: 1280,
-            height: 720,
+            height: 750,
             minHeight: 680,
             minWidth: 1170,
             webPreferences: { nodeIntegration: true },

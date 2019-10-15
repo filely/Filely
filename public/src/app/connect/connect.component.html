@@ -30,13 +30,13 @@
       <div class="tab">
         Authentication
       </div>
-      <div class="tab active">
+      <div class="tab" (click)="passwdClick($event);" [ngClass]="pw ? 'active' : ''">
         Password
       </div>
-      <div class="tab">
+      <div class="tab" (click)="keyClick($event);" [ngClass]="key ? 'active' : ''">
         Public Key
       </div>
-      <div class="tab">
+      <div class="tab" (click)="u2fClick($event);" [ngClass]="u2f ? 'active' : ''">
         U2F
       </div>
     </div>
@@ -51,4 +51,5 @@
       </div>
     </div>
   </div>
+  <button (click)="connect($event)">Connect</button>
 </div>
