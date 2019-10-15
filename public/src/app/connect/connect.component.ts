@@ -62,7 +62,7 @@ export class ConnectComponent implements OnInit {
   fileChangeEvent(event: any) {
     if (event.target.files && event.target.files[0]) {
         console.log(event.target.files);
-        document.getElementById("pathToKey").value = "" + event.target.files[0].path;
+        (<HTMLInputElement>document.getElementById("pathToKey")).value = "" + event.target.files[0].path;
         var reader = new FileReader();
         reader.onload = function(){
             console.log(reader.result);

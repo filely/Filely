@@ -1,7 +1,11 @@
 <div class="console">
-    <span>root@TestServer# </span><div class="prompt" contenteditable="true">test</div>
+    <span id="previouse" style="white-space: pre-line; overflow-y: scroll">{{previouse}}</span>
+    <span id="userServer" contenteditable="false">root@TestServer# </span>
+    <div class="prompt" contenteditable="true" id="prompt" (keydown)="onKey($event)">
+        teass
+    </div>
 
     <div class="information">
-        Connected to 127.0.0.1:22 over SSH
+        Connected to {{current.ip}}:{{current.port}} over {{current.protocol}}
     </div>
 </div>
