@@ -40,7 +40,7 @@
         U2F
       </div>
     </div>
-    <div class="content">
+    <div class="content" [hidden]="!pw">
       <div class="input">
         <label for="username">Username</label>
         <input type="text" name="username" id="username">
@@ -49,6 +49,19 @@
         <label for="password">Password</label>
         <input type="password" name="password" id="password">
       </div>
+    </div>
+    <div class="content" [hidden]="!key">
+        <div class="input">
+          <label for="path">Key-File</label>
+          <input type="text" name="path" id="pathToKey">
+          <input type="file" name="file" (change)="fileChangeEvent($event)" id="keyFile" [hidden]="true" accept=".pem, .ppk">
+          <button class="selectFileButton" (click)="selectKeyFile($event);">...</button>
+        </div>
+    </div>
+    <div class="content" [hidden]="!u2f">
+        <div class="input">
+          <label class="u2f">Scanning for key{{scanning}}</label>
+        </div>
     </div>
   </div>
   <button (click)="connect($event)">Connect</button>
