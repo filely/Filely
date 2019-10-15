@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://filely.app/img/filely_banner.png">
+  <img src=https://i.imgur.com/bK6kLJT.png">
 </p>
 <p align="center">
   <a href="https://discord.filely.app"><img src="https://discordapp.com/api/guilds/606439395553443840/widget.png"></a>

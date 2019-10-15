@@ -14,6 +14,11 @@
     position: relative;
     margin-left: 15px;
     margin-right: 15px;
+    cursor: pointer;
+    
+    &:hover {
+        background: darken(#ffffff, 5%);
+    }
 
     img {
       position: absolute;
@@ -36,6 +41,25 @@
   .input:not(:first-child) {
     margin-top: 10px;
   }
+
+  button {
+    border: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color:#3498DB;
+    width:  100%;
+    height: 2em;
+
+    color: white;
+    font-family: Nunito, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+        background: darken(#3498DB, 10%);
+      }
+  }
 }
 
 .input {
@@ -55,11 +79,15 @@
     text-align: center;
     line-height: 63px;
     color: #2C3E50;
-
     font-family: Nunito, sans-serif;
     font-size: 24px;
     font-weight: bold;
   }
+
+  .u2f {
+      width: 100%;
+  }
+
   input {
     display: inline-block;
     height: 100%;
@@ -74,6 +102,22 @@
     padding-right: 32px;
     font-weight: bold;
     color: #2C3E50;
+  }
+  button {
+      border-top-right-radius: 9px;
+      border-bottom-right-radius: 9px;
+      border-bottom-left-radius: 0px;
+      border-top-left-radius: 0px;
+      background: #fafbfc;
+      border: none;
+      box-shadow: none;
+      height: 100%;
+      width: 10%;
+      margin-top: 0px;
+      color: #2C3E50;
+      &:hover {
+        background: darken(#fafbfc, 4%);
+      }
   }
 }
 
