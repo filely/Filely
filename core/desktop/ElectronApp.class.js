@@ -1,6 +1,7 @@
 "use strict";
 
-const {app, BrowserWindow, ipcMain} = require("electron");
+const electron = require("electron");
+const {app, BrowserWindow, ipcMain} = electron;
 const Log = require("../Log.class");
 const path = require("path");
 const net = require("net");
@@ -19,8 +20,8 @@ class ElectronApp {
     _createWindow() {
         this.mainWindow = new BrowserWindow({
             width: 1280,
-            height: 720,
-            minHeight: 680,
+            height: 750,
+            minHeight: 740,
             minWidth: 1170,
             webPreferences: { nodeIntegration: true },
             frame: false,
@@ -73,6 +74,21 @@ class ElectronApp {
      */
     getWindow() {
         return this.mainWindow;
+    }
+
+    /**
+     * Mainly needed for the grafical server connection class
+     * @param {function(data)} mouseMoveCallback will be called when the mouse is moving
+     * 
+     */
+    hookMouse(mouseMoveCallback) {
+        this.gsc = setInterval(() => mouseMoveCallback(electron.screen.getCursorScreenPoint()), 10);
+        let that = this;
+        setTimeout(() => { that.unhookMouse() }, 20000);
+    }
+
+    unhookMouse() {
+        clearInterval(this.gsc);
     }
 
     /**
