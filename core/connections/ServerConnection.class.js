@@ -24,12 +24,12 @@ class ServerConnection {
      * Establishs the Connection to the remote system
      * @param  {function} readyCallback we be called when the connection is ready operations
      */
-    connect(readyCallback) {
+    connect(readyCallback, errCb) {
         //Creates an new ssh2 client
         this.client = new Client();
 
         //Listens for any kind of data (data and error)
-        this.client.on('error', (err) => Log.error('SSH - Connection Error: ' + err));
+        this.client.on('error', (err) => {Log.error('SSH - Connection Error: ' + err), errCb(err)});
 
         //Listens for the end and the start of an connection
         this.client.on('end', () => Log.info('SSH - Connection Closed'));

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import {IpcService} from '../ipc.service';
 
 @Component({
   selector: 'app-connect',
@@ -9,17 +10,16 @@ import * as $ from 'jquery';
 })
 export class ConnectComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ipc: IpcService) { }
 
   pw: boolean = true;
   u2f: boolean = false;
   key: boolean = false;
   scanning: string = ".";
   scanner: any;
+  authType: string = "pw";
 
-  ngOnInit() {
-    this.pw = true;
-  }
+  ngOnInit() {}
 
   keyClick(event: any) {
     this.pw = false;
@@ -40,6 +40,7 @@ export class ConnectComponent implements OnInit {
     this.u2f = true;
     this.key = false;
 
+
     let that = this;
     this.scanner = setInterval(() => {
         that.scanning += ".";
@@ -50,7 +51,15 @@ export class ConnectComponent implements OnInit {
   }
 
   connect(event: any) {
-    this.router.navigateByUrl('/console');
+    let sucsessfully = false;
+    this.ipc.send('connect', {authType: this.authType, connectOptions: { keyFile: "", user: "", password: "", keyHash: ""}});
+    this.ipc.on("connect-reply", (data) => {
+        if(data.successfully) {
+            this.router.navigateByUrl('/console');
+        } else {
+            console.log(data.error)
+        }
+    });
   }
 
   selectKeyFile(event: any) {
