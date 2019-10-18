@@ -27,7 +27,7 @@ class IPC {
             let LoadedHandler = require(`${__dirname}/handlers/${item}`);
             let handler = new LoadedHandler();
 
-            this._handlers[handler.getChannel()] = (socket, msg) => handler.handle(socket, msg);
+            this._handlers[handler.getChannel()] = (socket, msg, event) => handler.handle(socket, msg, event);
             Log.debug("Loaded IPC handler for \"" + handler.getChannel() + "\"");
         });
     }
@@ -38,7 +38,7 @@ class IPC {
     initHandlers() {
         for(let channel in this._handlers) {
             this.ipc.on(channel, (event, arg) => {
-                this._handlers[channel](this.ipc, arg);
+                this._handlers[channel](this.ipc, arg, event);
             });
         }
     }

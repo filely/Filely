@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import {IpcService} from '../ipc.service';
+const { dialog } = require('electron').remote
+
 
 @Component({
   selector: 'app-connect',
@@ -19,7 +21,17 @@ export class ConnectComponent implements OnInit {
   scanner: any;
   authType: string = "pw";
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.ipc.on("connect-reply", (data) => {
+        console.log("test");
+        console.log(data);
+        if(data.successfully) {
+            this.router.navigateByUrl('/console');
+        } else {
+            console.log(data.error);
+        }
+    });
+  }
 
   keyClick(event: any) {
     this.pw = false;
@@ -53,13 +65,7 @@ export class ConnectComponent implements OnInit {
   connect(event: any) {
     let sucsessfully = false;
     this.ipc.send('connect', {authType: this.authType, connectOptions: { keyFile: "", user: "", password: "", keyHash: ""}});
-    this.ipc.on("connect-reply", (data) => {
-        if(data.successfully) {
-            this.router.navigateByUrl('/console');
-        } else {
-            console.log(data.error)
-        }
-    });
+    console.log("Connect executed");
   }
 
   selectKeyFile(event: any) {
