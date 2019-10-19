@@ -66,3 +66,13 @@
   </div>
   <button (click)="connect($event)">Connect</button>
 </div>
+
+<div class="background" [hidden]="!blacking">
+    <div class="dialog" [hidden]="!dialogVisible">
+        <h1>{{dialog.title}}</h1>
+        <p>{{dialog.message}}</p>
+        <button class="buttonLeft">{{dialog.left}}</button>
+        <button class="buttonRight" (click)="closeDialog($event)">{{dialog.right}}</button>
+    </div>
+    <div class="loading" [hidden]="!loadingVisible"></div>
+</div>

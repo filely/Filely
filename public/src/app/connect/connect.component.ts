@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import {IpcService} from '../ipc.service';
-const { dialog } = require('electron').remote
 
 
 @Component({
@@ -17,18 +16,26 @@ export class ConnectComponent implements OnInit {
   pw: boolean = true;
   u2f: boolean = false;
   key: boolean = false;
+  blacking: boolean = false;
+  loadingVisible: boolean = false;
+  dialogVisible: boolean = false;
+  dialog: any = {title: "Connection error occurred!", message: "Error while trying to connecting to the server:", left: "open", right: "close"};
   scanning: string = ".";
   scanner: any;
   authType: string = "pw";
 
+
   ngOnInit() {
+    var that = this;
     this.ipc.on("connect-reply", (data) => {
-        console.log("test");
-        console.log(data);
         if(data.successfully) {
-            this.router.navigateByUrl('/console');
+            that.router.navigateByUrl('/console');
         } else {
-            console.log(data.error);
+            if(data.error.code == "ECONNREFUSED") {
+                that.blacking = true;
+                that.loadingVisible = true;
+                that.dialogVisible = true;
+            }
         }
     });
   }
@@ -72,8 +79,6 @@ export class ConnectComponent implements OnInit {
     $("#keyFile").click();
   }
 
-
-
   fileChangeEvent(event: any) {
     if (event.target.files && event.target.files[0]) {
         console.log(event.target.files);
@@ -84,6 +89,12 @@ export class ConnectComponent implements OnInit {
         };
         reader.readAsText(event.target.files[0]);
     }
+  }
+
+  closeDialog(event: any) {
+    this.blacking = false;
+    this.loadingVisible = false;
+    this.dialogVisible = false;
   }
 
 }
