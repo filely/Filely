@@ -29,7 +29,7 @@ export class ConsoleComponent implements OnInit {
     this.promptText = this.prompt.nativeElement.innerHTML.replace(new RegExp("&nbsp;", 'g'), " ");
     if(event.key == 'Enter') {
         event.preventDefault();
-        //this.ipc.send('execute', this.promptText);
+        this.ipc.send('execute', this.promptText);
         this.lastCommands.push({date: Date.now(), comment: this.promptText});
         this.previous += this.userServer + this.promptText + "\n";
         this.prompt.nativeElement.innerHTML = "";
