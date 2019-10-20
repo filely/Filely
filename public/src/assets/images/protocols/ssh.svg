@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="108" height="63.748" viewBox="0 0 108 63.748">
+  <defs>
+    <filter id="Vereinigungsmenge_12" x="0" y="0" width="44.131" height="63.748" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Vereinigungsmenge_14" x="63.869" y="0" width="44.131" height="63.676" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Vereinigungsmenge_15" x="30.565" y="0" width="44.131" height="63.748" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="ssh" transform="translate(9 6)">
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Vereinigungsmenge_12)">
+      <path id="Vereinigungsmenge_12-2" data-name="Vereinigungsmenge 12" d="M3.257,45.748a3.257,3.257,0,0,1,0-6.514H19.616v-13.1H3.257A3.258,3.258,0,0,1,0,22.874c0-.012,0-.024,0-.036s0-.024,0-.036V3.257A3.26,3.26,0,0,1,3.941.072H22.8a3.258,3.258,0,0,1,0,6.515H6.515V19.616H22.874a3.257,3.257,0,0,1,3.257,3.257V42.418a3.383,3.383,0,0,1-3.33,3.33Z" transform="translate(9 6)" fill="#3498db"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Vereinigungsmenge_14)">
+      <path id="Vereinigungsmenge_14-2" data-name="Vereinigungsmenge 14" d="M19.616,42.418V26.2H6.515V42.418a3.258,3.258,0,1,1-6.515,0V3.257a3.258,3.258,0,0,1,6.515,0V19.689h13.1V3.257a3.258,3.258,0,0,1,6.515,0V42.418a3.258,3.258,0,1,1-6.515,0Z" transform="translate(72.87 6)" fill="#3498db"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, -9, -6)" filter="url(#Vereinigungsmenge_15)">
+      <path id="Vereinigungsmenge_15-2" data-name="Vereinigungsmenge 15" d="M3.257,45.748a3.257,3.257,0,0,1,0-6.514H19.616v-13.1H3.257A3.258,3.258,0,0,1,0,22.874c0-.012,0-.024,0-.036s0-.024,0-.036V3.257A3.26,3.26,0,0,1,3.941.072H22.8a3.258,3.258,0,0,1,0,6.515H6.515V19.616H22.874a3.257,3.257,0,0,1,3.257,3.257V42.418a3.383,3.383,0,0,1-3.33,3.33Z" transform="translate(39.57 6)" fill="#3498db"/>
+    </g>
+  </g>
+</svg>

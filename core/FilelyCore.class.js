@@ -3,7 +3,6 @@
 const IPC = require('./io/IPC.class');
 const ElectronApp = require('./desktop/ElectronApp.class');
 const DiscordRPC = require('./desktop/DiscordRPC.class');
-const Connection = require('./connection/ServerConnection.class');
 const log = require('./Log.class');
 
 /**
@@ -20,7 +19,7 @@ class FilelyCore {
 
         log.info("Starting Filely App");
 
-        this.app = new ElectronApp(); // TODO: Set argument to false to use in production
+        this.app = new ElectronApp(true); // TODO: Set argument to false to use in production
 
         this.ipc = new IPC(this.app);
         await this.ipc.loadHandlers();
