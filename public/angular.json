@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/highlight.js/styles/androidstudio.css",
               "src/styles.less"
             ],
             "scripts": []
