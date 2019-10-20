@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {IpcService} from '../ipc.service';
 
 @Component({
@@ -8,40 +8,43 @@ import {IpcService} from '../ipc.service';
 })
 export class ConsoleComponent implements OnInit {
 
-  lastComments: Array<any>;
-  previouse: String = "";
+    @ViewChild('prompt') prompt: ElementRef;
+    promptText: string = "";
+
+  lastCommends: Array<any>;
+  previous: String = "";
   scrollIndex: number = 0;
   current: Object = {ip: "192.168.2.101", port: 8800, protocol: "SSH"}
   constructor(private ipc: IpcService) { }
 
   ngOnInit() {
-      this.lastComments = [];
+    this.prompt.nativeElement.focus();
+    this.lastCommends = [];
   }
 
   onKey(event: any) {
-      document.getElementById("prompt").focus();
     if(event.key == 'Enter') {
         event.preventDefault();
         let comment = document.getElementById("prompt").innerHTML;
         this.ipc.send('execute', comment);
-        this.lastComments.push({date: Date.now(), comment: comment});
-        this.previouse += document.getElementById("userServer").innerHTML + comment + "\n";
-        document.getElementById("prompt").innerHTML = "...";
-        this.previouse = this.previouse.replace(new RegExp("<br>", 'g') , "");
-        this.scrollIndex = this.lastComments.length - 1;
+        this.lastCommends.push({date: Date.now(), comment: comment});
+        this.previous += document.getElementById("userServer").innerHTML + comment + "\n";
+        document.getElementById("prompt").innerHTML = "";
+        this.previous = this.previous.replace(new RegExp("<br>", 'g') , "");
+        this.scrollIndex = this.lastCommends.length - 1;
     }
     if(event.key == 'ArrowUp') {
         event.preventDefault();
         this.scrollIndex = (this.scrollIndex == 0 ? 0 : this.scrollIndex - 1);
-        if(this.lastComments.length > 0) {
-            document.getElementById("prompt").innerHTML = this.lastComments[this.scrollIndex].comment;
+        if(this.lastCommends.length > 0) {
+            document.getElementById("prompt").innerHTML = this.lastCommends[this.scrollIndex].comment;
         }
     }
     if(event.key == 'ArrowDown') {
         event.preventDefault();
-        this.scrollIndex = (this.scrollIndex == this.lastComments.length - 1 ? this.lastComments.length - 1 : this.scrollIndex + 1);
-        if(this.lastComments.length > 0) {
-            document.getElementById("prompt").innerHTML = this.lastComments[this.scrollIndex].comment;
+        this.scrollIndex = (this.scrollIndex == this.lastCommends.length - 1 ? this.lastCommends.length - 1 : this.scrollIndex + 1);
+        if(this.lastCommends.length > 0) {
+            document.getElementById("prompt").innerHTML = this.lastCommends[this.scrollIndex].comment;
         }
     }
   }

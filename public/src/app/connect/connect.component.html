@@ -30,7 +30,7 @@
       <div class="tab">
         Authentication
       </div>
-      <div class="tab" (click)="passwdClick($event);" [ngClass]="pw ? 'active' : ''">
+      <div class="tab" (click)="passwdClick($event);" [ngClass]="{'active': pw}">
         Password
       </div>
       <div class="tab" (click)="keyClick($event);" [ngClass]="key ? 'active' : ''">
@@ -53,7 +53,7 @@
     <div class="content" [hidden]="!key">
         <div class="input">
           <label for="path">Key-File</label>
-          <input type="text" name="path" id="pathToKey">
+          <input type="text" name="path" id="pathToKey" [(ngModel)]="pathToKey">
           <input type="file" name="file" (change)="fileChangeEvent($event)" id="keyFile" [hidden]="true" accept=".pem, .ppk">
           <button class="selectFileButton" (click)="selectKeyFile($event);">...</button>
         </div>
@@ -72,7 +72,7 @@
         <h1>{{dialog.title}}</h1>
         <p>{{dialog.message}}</p>
         <button class="buttonLeft">{{dialog.left}}</button>
-        <button class="buttonRight" (click)="closeDialog($event)">{{dialog.right}}</button>
+        <button class="buttonRight" (click)="closeDialog()">{{dialog.right}}</button>
     </div>
     <div class="loading" [hidden]="!loadingVisible"></div>
 </div>

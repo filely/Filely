@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
 import {IpcService} from '../ipc.service';
 
 
@@ -23,18 +22,26 @@ export class ConnectComponent implements OnInit {
   scanning: string = ".";
   scanner: any;
   authType: string = "pw";
+  pathToKey: string;
 
+
+  /**
+   * 
+   * Fix Dialog Bug
+   * Dialog is only poping out sometime
+   * @Alexander 
+   * (I'm to stupid for Angular)
+   */
 
   ngOnInit() {
-    var that = this;
     this.ipc.on("connect-reply", (data) => {
         if(data.successfully) {
-            that.router.navigateByUrl('/console');
+            this.router.navigateByUrl('/console');
         } else {
             if(data.error.code == "ECONNREFUSED") {
-                that.blacking = true;
-                that.loadingVisible = true;
-                that.dialogVisible = true;
+                this.blacking = true;
+                this.loadingVisible = true;
+                this.dialogVisible = true;
             }
         }
     });
@@ -58,13 +65,10 @@ export class ConnectComponent implements OnInit {
     this.pw = false;
     this.u2f = true;
     this.key = false;
-
-
-    let that = this;
     this.scanner = setInterval(() => {
-        that.scanning += ".";
-        if(that.scanning.length == 5) {
-            that.scanning = ".";
+        this.scanning += ".";
+        if(this.scanning.length == 5) {
+            this.scanning = ".";
         }
     }, 1000);
   }
@@ -76,22 +80,25 @@ export class ConnectComponent implements OnInit {
   }
 
   selectKeyFile(event: any) {
-    $("#keyFile").click();
+      let element : HTMLElement = document.getElementById("keyFile") as HTMLElement;
+      element.click();
   }
 
   fileChangeEvent(event: any) {
     if (event.target.files && event.target.files[0]) {
-        console.log(event.target.files);
-        (<HTMLInputElement>document.getElementById("pathToKey")).value = "" + event.target.files[0].path;
+        let element : HTMLElement = document.getElementById("pathToKey") as HTMLElement;
+        element.innerHTML = event.target.files[0].path;
+        //TODO: Fix ngModel @Alexander
+        this.pathToKey = "" + event.target.files[0].path
         var reader = new FileReader();
         reader.onload = function(){
-            console.log(reader.result);
+            //TODO: Handle Key!
         };
         reader.readAsText(event.target.files[0]);
     }
   }
 
-  closeDialog(event: any) {
+  closeDialog() {
     this.blacking = false;
     this.loadingVisible = false;
     this.dialogVisible = false;

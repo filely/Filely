@@ -83,8 +83,7 @@ class ElectronApp {
      */
     hookMouse(mouseMoveCallback) {
         this.gsc = setInterval(() => mouseMoveCallback(electron.screen.getCursorScreenPoint()), 10);
-        let that = this;
-        setTimeout(() => { that.unhookMouse() }, 20000);
+        //Will be needed later! setTimeout(() => { this.unhookMouse() }, 20000);
     }
 
     unhookMouse() {
