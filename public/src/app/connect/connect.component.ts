@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { Router } from '@angular/router';
-import * as $ from 'jquery';
+import {IpcService} from '../ipc.service';
+
 
 @Component({
   selector: 'app-connect',
@@ -9,16 +10,41 @@ import * as $ from 'jquery';
 })
 export class ConnectComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private ipc: IpcService) { }
 
   pw: boolean = true;
   u2f: boolean = false;
   key: boolean = false;
+  blacking: boolean = false;
+  loadingVisible: boolean = false;
+  dialogVisible: boolean = false;
+  dialog: any = {title: "Connection error occurred!", message: "Error while trying to connecting to the server:", left: "open", right: "close"};
   scanning: string = ".";
   scanner: any;
+  authType: string = "pw";
+  pathToKey: string;
+
+
+  /**
+   * 
+   * Fix Dialog Bug
+   * Dialog is only poping out sometime
+   * @Alexander 
+   * (I'm to stupid for Angular)
+   */
 
   ngOnInit() {
-    this.pw = true;
+    this.ipc.on("connect-reply", (data) => {
+        if(data.successfully) {
+            this.router.navigateByUrl('/console');
+        } else {
+            if(data.error.code == "ECONNREFUSED") {
+                this.blacking = true;
+                this.loadingVisible = true;
+                this.dialogVisible = true;
+            }
+        }
+    });
   }
 
   keyClick(event: any) {
@@ -39,36 +65,43 @@ export class ConnectComponent implements OnInit {
     this.pw = false;
     this.u2f = true;
     this.key = false;
-
-    let that = this;
     this.scanner = setInterval(() => {
-        that.scanning += ".";
-        if(that.scanning.length == 5) {
-            that.scanning = ".";
+        this.scanning += ".";
+        if(this.scanning.length == 5) {
+            this.scanning = ".";
         }
     }, 1000);
   }
 
   connect(event: any) {
-    this.router.navigateByUrl('/console');
+    let sucsessfully = false;
+    this.ipc.send('connect', {authType: this.authType, connectOptions: { keyFile: "", user: "", password: "", keyHash: ""}});
+    console.log("Connect executed");
   }
 
   selectKeyFile(event: any) {
-    $("#keyFile").click();
+      let element : HTMLElement = document.getElementById("keyFile") as HTMLElement;
+      element.click();
   }
-
-
 
   fileChangeEvent(event: any) {
     if (event.target.files && event.target.files[0]) {
-        console.log(event.target.files);
-        (<HTMLInputElement>document.getElementById("pathToKey")).value = "" + event.target.files[0].path;
+        let element : HTMLElement = document.getElementById("pathToKey") as HTMLElement;
+        element.innerHTML = event.target.files[0].path;
+        //TODO: Fix ngModel @Alexander
+        this.pathToKey = "" + event.target.files[0].path
         var reader = new FileReader();
         reader.onload = function(){
-            console.log(reader.result);
+            //TODO: Handle Key!
         };
         reader.readAsText(event.target.files[0]);
     }
+  }
+
+  closeDialog() {
+    this.blacking = false;
+    this.loadingVisible = false;
+    this.dialogVisible = false;
   }
 
 }

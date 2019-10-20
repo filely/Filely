@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +40,8 @@ export function hljsLanguages() {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HighlightModule.forRoot({ languages: hljsLanguages })
+    HighlightModule.forRoot({ languages: hljsLanguages }),
+    FormsModule
   ],
   providers: [IpcService],
   bootstrap: [AppComponent]

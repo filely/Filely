@@ -12,21 +12,9 @@
     <p class="title">Settings</p>
   </a>
 </div>
-<div class="server-list">
-  <div class="server">
+<ul class="server-list">
+  <li class="server" *ngFor="let connection of connectionList">
     <img class="icon" src="assets/images/server_list.svg">
-    <p class="address">{{connection0.ip}}</p>
-  </div>
-  <div class="server">
-    <img class="icon" src="assets/images/server_list.svg">
-    <p class="address">{{connection1.ip}}</p>
-  </div>
-  <div class="server">
-    <img class="icon" src="assets/images/server_list.svg">
-    <p class="address">{{connection2.ip}}</p>
-  </div>
-  <div class="server">
-    <img class="icon" src="assets/images/server_list.svg">
-    <p class="address">{{connection3.ip}}</p>
-  </div>
-</div>
+    <p class="address">{{connection.ip}}</p>
+  </li>
+</ul>
