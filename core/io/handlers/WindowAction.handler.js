@@ -1,6 +1,5 @@
 "use strict";
 
-const Log = require('../../Log.class');
 const FilelyCore = require('../../FilelyCore.class');
 
 const process = require('process');

@@ -1,7 +1,5 @@
 "use strict";
 
-const Log = require('../../Log.class');
-const FilelyCore = require('../../FilelyCore.class');
 const ServerConnection = require("../../connections/ServerConnection.class")
 
 class ServerConnectionIPC {

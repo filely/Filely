@@ -17,6 +17,10 @@ class ElectronApp {
         this.mainWindow = null;
     }
 
+
+    /**
+     * Creating the Native OS Window with Electron
+     */
     _createWindow() {
         this.mainWindow = new BrowserWindow({
             width: 1280,
@@ -29,9 +33,12 @@ class ElectronApp {
         });
         this.mainWindow.setMenu(null);
 
+        //DEV Modus
+        //Local Angular Server is in use!
         if (this.development === true) {
             Log.debug("Enabling development mode");
 
+            //Opens the Chrome DevTools for better Debugging
             this.mainWindow.webContents.openDevTools();
 
             let server = net.createServer();
@@ -44,6 +51,7 @@ class ElectronApp {
                 server.close();
             });
 
+            //Local server isen't available, using build file 
             server.once("listening", () => {
                 Log.debug("Using built files");
                 this.mainWindow.loadFile(path.resolve(__dirname + "/../../public/dist/public/index.html"));
@@ -52,6 +60,7 @@ class ElectronApp {
 
             server.listen(4200, "localhost");
         } else {
+            //Production Use, Loading builded files
             this.mainWindow.loadFile("public/dist/public/index.html");
         }
 

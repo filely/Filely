@@ -1,8 +1,5 @@
-const Client = require('ssh2').Client;
-const fs = require("fs");
 const rfb = require("rfb2");
 const png = require("node-png");
-const Log = require('../Log.class');
 const electronLocalshortcut = require('electron-localshortcut');
 
 class GraficalServerConnection {
