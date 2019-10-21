@@ -12,9 +12,8 @@ export class ConnectComponent implements OnInit {
 
   constructor(private router: Router, private ipc: IpcService) { }
 
-  pw: boolean = true;
-  u2f: boolean = false;
-  key: boolean = false;
+  mode = "pw";
+
   blacking: boolean = false;
   loadingVisible: boolean = false;
   dialogVisible: boolean = false;
@@ -48,23 +47,17 @@ export class ConnectComponent implements OnInit {
   }
 
   keyClick(event: any) {
-    this.pw = false;
-    this.u2f = false;
-    this.key = true;
+    this.mode = "key";
     clearInterval(this.scanner);
   }
 
   passwdClick(event: any) {
-    this.pw = true;
-    this.u2f = false;
-    this.key = false;
+    this.mode = "pw";
     clearInterval(this.scanner);
   }
 
   u2fClick(event: any) {
-    this.pw = false;
-    this.u2f = true;
-    this.key = false;
+    this.mode = "u2f";
     this.scanner = setInterval(() => {
         this.scanning += ".";
         if(this.scanning.length == 5) {
@@ -74,22 +67,14 @@ export class ConnectComponent implements OnInit {
   }
 
   connect(event: any) {
-    let sucsessfully = false;
+    let successfully = false;
     this.ipc.send('connect', {authType: this.authType, connectOptions: { keyFile: "", user: "", password: "", keyHash: ""}});
     console.log("Connect executed");
   }
 
-  selectKeyFile(event: any) {
-      let element : HTMLElement = document.getElementById("keyFile") as HTMLElement;
-      element.click();
-  }
-
   fileChangeEvent(event: any) {
     if (event.target.files && event.target.files[0]) {
-        let element : HTMLElement = document.getElementById("pathToKey") as HTMLElement;
-        element.innerHTML = event.target.files[0].path;
-        //TODO: Fix ngModel @Alexander
-        this.pathToKey = "" + event.target.files[0].path
+        this.pathToKey = "" + event.target.files[0].path;
         var reader = new FileReader();
         reader.onload = function(){
             //TODO: Handle Key!

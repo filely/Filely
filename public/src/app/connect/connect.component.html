@@ -30,17 +30,17 @@
       <div class="tab">
         Authentication
       </div>
-      <div class="tab" (click)="passwdClick($event);" [ngClass]="{'active': pw}">
+      <div class="tab" (click)="passwdClick($event);" [ngClass]="{'active': mode === 'pw'}">
         Password
       </div>
-      <div class="tab" (click)="keyClick($event);" [ngClass]="key ? 'active' : ''">
+      <div class="tab" (click)="keyClick($event);" [ngClass]="{'active': mode === 'key'}">
         Public Key
       </div>
-      <div class="tab" (click)="u2fClick($event);" [ngClass]="u2f ? 'active' : ''">
+      <div class="tab" (click)="u2fClick($event);" [ngClass]="{'active': mode === 'u2f'}">
         U2F
       </div>
     </div>
-    <div class="content" [hidden]="!pw">
+    <div class="content" *ngIf="mode === 'pw'">
       <div class="input">
         <label for="username">Username</label>
         <input type="text" name="username" id="username">
@@ -50,15 +50,15 @@
         <input type="password" name="password" id="password">
       </div>
     </div>
-    <div class="content" [hidden]="!key">
+    <div class="content" *ngIf="mode === 'key'">
         <div class="input">
-          <label for="path">Key-File</label>
+          <label for="pathToKey">Key-File</label>
           <input type="text" name="path" id="pathToKey" [(ngModel)]="pathToKey">
-          <input type="file" name="file" (change)="fileChangeEvent($event)" id="keyFile" [hidden]="true" accept=".pem, .ppk">
-          <button class="selectFileButton" (click)="selectKeyFile($event);">...</button>
+          <input type="file" name="file" (change)="fileChangeEvent($event)" id="keyFile" [hidden]="true" accept=".pem, .ppk" #keyFile>
+          <button class="selectFileButton" (click)="keyFile.click()">...</button>
         </div>
     </div>
-    <div class="content" [hidden]="!u2f">
+    <div class="content" *ngIf="mode === 'u2f'">
         <div class="input">
           <label class="u2f">Scanning for key{{scanning}}</label>
         </div>
@@ -67,12 +67,12 @@
   <button (click)="connect($event)">Connect</button>
 </div>
 
-<div class="background" [hidden]="!blacking">
-    <div class="dialog" [hidden]="!dialogVisible">
+<div class="background" *ngIf="blacking">
+    <div class="dialog" *ngIf="dialogVisible">
         <h1>{{dialog.title}}</h1>
         <p>{{dialog.message}}</p>
         <button class="buttonLeft">{{dialog.left}}</button>
         <button class="buttonRight" (click)="closeDialog()">{{dialog.right}}</button>
     </div>
-    <div class="loading" [hidden]="!loadingVisible"></div>
+    <div class="loading" *ngIf="loadingVisible"></div>
 </div>

@@ -1,6 +1,6 @@
 <div class="console" (focus)="prompt.focus()">
-    <span id="previouse" style="white-space: pre-line; overflow-y: scroll">{{previouse}}</span>
-    <span id="userServer" contenteditable="false">root@TestServer# </span>
+    <span id="previous" style="white-space: pre-line; overflow-y: scroll" [textContent]="previous"></span>
+    <span id="userServer" [textContent]="userServer"></span>
     <div class="prompt" contenteditable="true" id="prompt" (keydown)="onKey($event)" [ngStyle]="{'display': promptText.length > 0 ? 'inline' : 'inline-block'}" #prompt (blur)="prompt.focus()">
         
     </div>

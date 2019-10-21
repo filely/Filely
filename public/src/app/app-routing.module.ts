@@ -6,6 +6,7 @@ import {ConnectComponent} from "./connect/connect.component";
 import {ServerListComponent} from "./server-list/server-list.component";
 import {ConsoleComponent} from "./console/console.component";
 import { FileTransferComponent } from './file-transfer/file-transfer.component';
+import {EditorComponent} from "./editor/editor.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent },
   { path: 'console', component: ConsoleComponent },
   { path: 'file-transfer', component: FileTransferComponent },
+  { path: 'editor', component: EditorComponent },
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: '**', redirectTo: 'home' }
 ];
