@@ -23,6 +23,7 @@ class IPC {
         Log.info("Loading IPC handlers");
         let items = await readdir(`${__dirname}/handlers`);
 
+        //Loops though all handlers and handels all incomming requests
         items.forEach((item) => {
             let LoadedHandler = require(`${__dirname}/handlers/${item}`);
             let handler = new LoadedHandler();

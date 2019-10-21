@@ -43,6 +43,9 @@ class Log {
         console.log('\x1b[31m[ERROR ' + this.getDateTime() + '] \x1b[37m' + msg);
     }
 
+    /**
+     * Returns the current Date & Time in a special formatted way!
+     */
     getDateTime() {
         const date = new Date();
 
