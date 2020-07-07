@@ -24,7 +24,7 @@
   "author": "Alexander Mandera, Robin Schleser & ilou",
   "license": "LICENSE.md",
   "devDependencies": {
-    "electron": "^6.0.1",
+    "electron": "^7.2.4",
     "electron-packager": "^14.0.4",
     "ssh2": "^0.8.5",
     "tsc": "^1.20150623.0"
@@ -32,7 +32,7 @@
   "dependencies": {
     "discord-rpc": "^3.0.2",
     "discord.js": "^11.5.1",
-    "electron": "^6.0.1",
+    "electron": "^7.2.4",
     "electron-localshortcut": "^3.1.0",
     "electron-packager": "^14.0.4",
     "express": "^4.17.1",
